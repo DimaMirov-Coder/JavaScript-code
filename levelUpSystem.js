@@ -1,7 +1,11 @@
 export function levelUpSystem(player, xp, level, maxLevel, levelsPerUpgrade, amount) {
     // Проверка, достигнута ли максимальная граница уровня
     if (level >= maxLevel) {
-        player.sendMessage('Достигнут максимальный уровень')
+        if(!player.hasTag('maxLevel')) {
+            player.onScreenDisplay.setActionBar(`§3§lВы достигли максимального уровня`)
+            player.playSound('firework.launch')
+            player.runCommand(`summon fireworks_rocket ${player.location.x} ${player.location.y+3} ${player.location.z} ~ ~`)
+        }
       return;
     }
   
@@ -15,7 +19,13 @@ export function levelUpSystem(player, xp, level, maxLevel, levelsPerUpgrade, amo
   
       // Проверка, достигнута ли максимальная граница уровня после повышения
       if (level >= maxLevel) {
-        // console.warn("Вы достигли максимального уровня.");
+        player.runCommandAsync('title @a times 0 100 0')
+        if(!player.hasTag('maxLevel')) {
+            player.onScreenDisplay.setActionBar(`§3§lВы достигли максимального уровня`)
+            player.playSound('firework.launch')
+            player.runCommand(`summon fireworks_rocket ${player.location.x} ${player.location.y+3} ${player.location.z} ~ ~`)
+            player.addTag('maxLevel')
+        }
         break;
       }
     }
