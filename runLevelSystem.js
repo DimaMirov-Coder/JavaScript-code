@@ -1,5 +1,5 @@
 import {system} from "@minecraft/server";
-import {levelUpSystem} from "./function"
+import {levelUpSystem} from "./levelUpSystem"
 system.runInterval(() => {
     for (let player of world.getAllPlayers()) {
         let xp = getScore('exp', player); // Текущий опыт
