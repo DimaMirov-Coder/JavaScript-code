@@ -1,7 +1,7 @@
 export function levelUpSystem(player, xp, level, maxLevel, levelsPerUpgrade, amount) {
     // Проверка, достигнута ли максимальная граница уровня
     if (level >= maxLevel) {
-        player.
+        player.sendMessage('Достигнут максимальный уровень')
       return;
     }
   
