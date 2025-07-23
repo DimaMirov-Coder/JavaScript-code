@@ -62,4 +62,30 @@ export class EconomyManager {
     reset(currency) {
         this.setBalance(currency, 0);
     }
+
+    /**
+     * Форматирует число в сокращённый вид с суффиксами
+     * 1000 -> 1к, 1500000 -> 1.5м и т.д.
+     * @param {number} number
+     * @returns {string}
+     */
+    formatNumber(number) {
+        if (number < 1000) return number.toString();
+
+        const suffixes = [
+            { value: 1e12, symbol: 'т' }, // триллион
+            { value: 1e9, symbol: 'г' },  // миллиард (г = гига)
+            { value: 1e6, symbol: 'м' },  // миллион
+            { value: 1e3, symbol: 'к' }   // тысяча
+        ];
+
+        for (const suffix of suffixes) {
+            if (number >= suffix.value) {
+                const base = number / suffix.value;
+                return base.toFixed(2) + suffix.symbol;
+            }
+        }
+
+        return number.toString();
+    }
 }
