@@ -1,2 +1,2 @@
 # JavaScript-code
-Жаба скрипты для майнкруфта
+JavaScripts for bedrock minecraft
